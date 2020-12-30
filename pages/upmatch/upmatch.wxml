@@ -1,0 +1,78 @@
+<view>
+	<view wx:if="{{isLogin}}" class="head-info">
+		<image class="face-img" src="{{faceImg}}"></image>
+		<text>{{uname}}</text>
+	</view>
+	<view wx:else class="head-info">
+		<text class="login-code">{{loginCode}}</text>
+		<view style="display: inline-block;margin-left: 14px;"><button bindtap="copyText" class="code-copy-btn">复制</button></view>
+	</view>
+	<view class="opt-content">
+		<view class="up-info-title"><text>*</text>群组</view>
+		<picker bindchange="bindPickerChange" range-key="name" value="{{index}}" range="{{groups}}">
+			<view class="picker">
+				<view class="picker-part">{{groups[index].name}}</view>
+			</view>
+		</picker>
+
+		<view class="up-info-title"><text>*</text>比赛日期</view>
+		<view style="display: flex;justify-content:flex-start;margin-right: 12px;">
+		<picker style="flex: 1;" mode="date" value="{{date}}" start="2020-01-01" end="2030-12-31" bindchange="bindDateChange">
+			<view class="picker">
+				<view class="picker-part" style="width: 100%;">
+					<text>{{date}}</text>
+					<text>{{week}}</text>
+				</view>
+			</view>
+		</picker>
+		<view class="get-newup-date" bindtap="bindGetCurrNewDate">最新日期</view>
+	</view>
+
+		<view class="up-info-title"><text>*</text>开始时间</view>
+		<picker mode="time" value="{{startTime}}" start="00:00" end="23:59" bindchange="bindStartTimeChange">
+			<view class="picker">
+				<view class="picker-part">{{startTime}}</view>
+			</view>
+		</picker>
+
+		<view class="up-info-title"><text>*</text>结束时间</view>
+		<picker mode="time" value="{{endTime}}" start="00:00" end="23:59" bindchange="bindEndTimeChange">
+			<view class="picker">
+				<view class="picker-part">{{endTime}}</view>
+			</view>
+		</picker>
+
+		<view class="up-info-title"><text>*</text>标题</view>
+		<view class="info-ipt-part">
+			<input value="{{title}}" bindinput="onTitleInput"></input>
+		</view>
+
+		<view class="up-info-title">副标题</view>
+		<view class="info-ipt-part">
+			<input value="{{subtitle}}" bindinput="onSubTitleInput"></input>
+		</view>
+
+		<view class="up-info-title">期数</view>
+		<view class="info-ipt-part">
+			<input value="{{period}}" bindinput="onPeriodInput"></input>
+		</view>
+
+    <view class="up-info-title content-title"><text>*</text>内容<text class="word-num-count">{{content.length}}字</text></view>
+    <view class="match-content-part">
+			<textarea maxlength="20000" bindinput="onContentInput" value="{{content}}"></textarea>
+		</view>
+
+    <view class="bottom-btn-part">
+      <button class="z-btn" bindtap="bindUploadMatch">提交</button>
+		</view>
+		
+		<view class="bottom-much-up">
+			<view wx:if="{{uploadMatchArr.length}}" class="all-much-count">共{{uploadMatchArr.length}}篇</view>
+			<view wx:for="{{uploadMatchArr}}" wx:key="index" class="much-upload">
+					<view class="{{item.isUped ? 'disabled-btn': ''}}" bindtap="bindUploadMatchMuch" data-index="{{index}}">上传</view>
+					<text>{{item.date}}</text>
+					<text>{{item.guid == 1 ? item.subtitle : item.title}}</text>
+			</view>
+		</view>
+	</view>
+</view>

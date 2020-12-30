@@ -1,0 +1,82 @@
+
+.page-btns{
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-top: 12px;
+}
+
+.page-btns button{
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0px;
+  line-height: 36px;
+  font-family: normal;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #666;
+  font-weight: normal;
+  margin-right: 8px !important;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.article-total-count{
+  margin-left: 12px;
+  font-size: 14px;
+  height: 18px;
+  line-height: 18px;
+  margin-top: 4px;
+}
+
+.article-list{
+  border-bottom: 1px solid #ddd;
+  margin-left: 12px;
+  margin-right: 12px;
+  font-size: 14px;
+}
+
+.article-list>view{
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.article-list>view>button{
+  width: 70px !important;
+  height: 24px !important;
+  font-size: 14px;
+  padding: 0px;
+  line-height: 24px;
+  font-family: normal;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #333;
+  font-weight: normal;
+  flex-grow: 0;
+  margin-right: 12px !important;
+  display: inline-block;
+}
+
+.article-list>view>textarea{
+  border: 1px solid #ddd;
+  padding: 8px;
+  height: 180px;
+  border-radius: 2px;
+  width: calc(100% - 16px);
+}
+
+.page-btn-sel{
+  border: 1px solid #07c062 !important;
+  background: #07c062 !important;
+  color: white !important;
+}
+
+.detail-text{
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+}
+
+.detail-text>button{
+  margin-bottom: 4px;
+  margin-top: 8px;
+}

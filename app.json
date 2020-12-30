@@ -1,0 +1,42 @@
+{
+  "pages":[
+    "pages/upmatch/upmatch",
+    "pages/articles/articles",
+    "pages/fmttool/fmttool"
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "小拆联赛",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+		"selectedColor": "#07c062",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+    "list": [
+      {
+        "pagePath": "pages/upmatch/upmatch",
+        "text": "上传比赛",
+        "iconPath": "static/upload.png",
+        "selectedIconPath": "static/uploadHL.png"
+      },
+      {
+        "pagePath": "pages/articles/articles",
+        "text": "比赛列表",
+        "iconPath": "static/list.png",
+        "selectedIconPath": "static/listHL.png"
+      },
+      {
+        "pagePath": "pages/fmttool/fmttool",
+        "text": "格式工具",
+        "iconPath": "static/tool.png",
+        "selectedIconPath": "static/toolHL.png"
+      }
+   ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

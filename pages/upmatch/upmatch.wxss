@@ -1,0 +1,129 @@
+
+.face-img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+  margin-right: 6px;
+}
+
+
+.info-ipt-part>input{
+  margin-left: 12px;
+  margin-right: 12px;
+  border: 1px solid #d4d4d4;
+  height: 32px;
+  border-radius: 2px;
+  padding-left: 8px;
+}
+
+.match-content-part{
+  height: 210px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.match-content-part>textarea{
+  border: 1px solid #d4d4d4;
+  height: 180px;
+  width: calc(100% - 16px);
+  border-radius: 2px;
+  padding: 8px;
+}
+
+.z-btn{
+  font-weight: normal;
+  background: #07c062;
+  color: white;
+  height: 32px;
+  line-height: 32px;
+  padding: 0px;
+  width: 100px !important;
+  font-size: 16px;
+}
+
+.bottom-btn-part{
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+.word-num-count{
+  flex-grow: 1;
+  text-align: right;
+  margin-right: 4px;
+}
+
+.content-title{
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 12px;
+}
+
+
+.login-code{
+  margin-left: 12px;
+}
+
+.code-copy-btn{
+  font-weight: normal;
+  background: #07c062;
+  color: white;
+  height: 32px;
+  line-height: 32px;
+  padding: 0px;
+  width: 80px !important;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.bottom-much-up{
+  margin-left: 12px;
+  margin-right: 12px;
+  padding-bottom: 12px;
+}
+.much-upload{
+  border: 1px solid #d4d4d4;
+  height: 32px;
+  line-height: 32px;
+  margin-bottom: 8px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.much-upload>text{
+  margin-left: 10px;
+}
+
+.much-upload>view{
+  display: inline-block;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  width: 60px !important;
+  font-weight: normal;
+  background: #07c062;
+  color: white;
+  height: 32px;
+  text-align: center;
+}
+
+.disabled-btn{
+  pointer-events: none;
+  background: #aaa !important;
+}
+
+.all-much-count{
+  margin-bottom: 4px;
+}
+
+.get-newup-date{
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #07c062;
+  color: white;
+  background: #07c062;
+  border-radius: 3px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0px 6px;
+}

@@ -1,0 +1,41 @@
+<view>
+	<view class="opt-content" style="min-height: {{contentHeight - 20}}px !important;">
+		<view class="up-info-title"><text>*</text>群组</view>
+		<picker bindchange="bindPickerChange" range-key="name" value="{{index}}" range="{{groups}}">
+			<view class="picker">
+				<view class="picker-part">{{groups[index].name}}<text></text></view>
+			</view>
+		</picker>
+
+    <view class="article-total-count">共找到{{total}}条数据</view>
+    <view class="article-list" wx:for="{{articleArr}}" wx:key="index">
+      <view>
+        <text wx:if="{{!!item.period}}" style="margin-right: 12px;">{{item.period + "期"}}</text>
+        <text>{{item.title}}{{item.subtitle ? " - " + item.subtitle : ""}}</text>
+      </view>
+      <view>{{item.started_at}} ~ {{item.ended_at}}</view>
+      <view>
+        <text>{{item.content.length}}字</text>
+        <text style="margin-right: 12px;"></text>
+        <text style="margin-right: 12px;">{{item.user.name}}</text>
+        <text>{{item.created_at}}创</text>
+      </view>
+      <view>
+        <button data-index="{{index}}" bindtap="showDetail" class="info-btn">详情</button>
+        <button data-id="{{item.id}}" bindtap="deleteMatch" class="del-btn">删除</button>
+      </view>
+      <view wx:if="{{index==showIndex}}" class="detail-text">
+        <textarea value="{{item.content}}" maxlength="2000" bindinput="onContentInput"></textarea>
+        <button class="info-btn" bindtap="bindModifyContent" data-index="{{index}}">修改内容</button>
+      </view>
+    </view>
+    
+    <view class="page-btns">
+      <block wx:for="{{pageBtnArr}}" wx:key="index">
+        <button data-index="{{index}}" bindtap="onPageBtnTap" class="{{index + 1 == pageSel ? 'page-btn-sel' : ''}}">
+          {{item}}
+        </button>
+      </block>
+    </view>
+	</view>
+</view>

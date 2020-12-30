@@ -1,0 +1,40 @@
+<view>
+  <view class="opt-content" style="height: {{contentHeight - 20}}px !important;">
+    <view style="height: 12px;"></view>
+    <view class="match-content-part" style="height: {{contentHeight - 174}}px !important;">
+      <textarea maxlength="10000" bindinput="onContentInput" value="{{content}}"></textarea>
+    </view>
+    <view class="text-info-part">
+      <text>字数：<text class="fmt-infos">{{wordCount}}</text></text>
+      <text>En：<text class="fmt-infos">{{enWordCount}}</text></text>
+      <text>符号：<text class="fmt-infos"
+          style="color: {{punctuation == 'Normal' ? '#333':'#ff3300'}};">{{punctuation}}</text></text>
+    </view>
+    <view class="text-info-part">
+      <text>OUT-3500：<text class="fmt-infos">{{out3500}}</text></text>
+    </view>
+    <view class="list-chose">
+      <picker bindchange="bindTypePickerChange" value="{{typeSel}}" range="{{commonWordTypes}}">
+        <view class="picker">
+          <view class="fmt-picker-part" style="width: 60px;">{{commonWordTypes[typeSel]}}</view>
+        </view>
+      </picker>
+      <picker bindchange="bindNumPickerChange" value="{{numSel}}" range="{{commonWordNums}}">
+        <view class="picker">
+          <view class="fmt-picker-part" style="width: 36px;">{{commonWordNums[numSel]}}</view>
+        </view>
+      </picker>
+      <button bindtap="bindMadeSingleWord" class="fmt-btn" style="width: 70px !important;margin-right: 16px;">常用字</button>
+      <picker bindchange="bindCutPickerChange" value="{{cutSel}}" range="{{cutNums}}">
+        <view class="picker">
+          <view class="fmt-picker-part" style="width: 36px;">{{cutNums[cutSel]}}</view>
+        </view>
+      </picker>
+      <button bindtap="bindCutWord" class="fmt-btn" style="width: 50px !important;">切段</button>
+    </view>
+    <view class="fmt-operate-part">
+      <button bindtap="bindFmtText" class="fmt-btn" style="margin-right: 14px;width: 200px !important;">整理格式</button>
+      <button bindtap="bindResetAll" class="fmt-btn" style="width: 102px !important;">重置</button>
+    </view>
+  </view>
+</view>
