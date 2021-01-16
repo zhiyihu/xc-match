@@ -38,7 +38,7 @@ Page({
     const index = this.data.index;
     const guid = this.data.groups[index].guid;
     if (guid != 0) {
-      const period = this.calGroupStage(guid, this.data.date);
+      const period = util.calGroupStage(guid, this.data.date);
       this.setData({
         period: period
       });
@@ -204,7 +204,7 @@ Page({
         title: "",
         subtitle: "",
         content: "",
-        period: self.calGroupStage(guid, nextDate),
+        period: util.calGroupStage(guid, nextDate),
         date: nextDate
       });
     });
@@ -242,7 +242,7 @@ Page({
 
 
       const date = util.calDateStrByGap(currDate, i);
-      const period = this.calGroupStage(guid, date);
+      const period = util.calGroupStage(guid, date);
 
       obj.content = content;
       obj.guid = guid;
@@ -418,85 +418,7 @@ Page({
     });
   },
 
-  calGroupStage: function (guid, matchDateStr) {
-    if (!guid || !matchDateStr) {
-      return '';
-    }
-    const groupStageObj = {
-      "1": {
-        name: "小拆联赛",
-        date: "2020-09-02",
-        stage: 1
-      },
-      "68947810": {
-        name: "帝隆◆拆五笔跟打群",
-        date: "2020-10-10",
-        stage: 2020
-      },
-      "41639633": {
-        name: "键心阁",
-        date: "2020-10-10",
-        stage: 1846
-      },
-      "49269560": {
-        name: "指爱",
-        date: "2020-10-10",
-        stage: 2598
-      },
-      "26053477": {
-        name: "五林风",
-        date: "2020-10-10",
-        stage: 1618
-      },
-      "12941287": {
-        name: "聚贤阁",
-        date: "2020-10-10",
-        stage: 765
-      },
-      "556981260": {
-        name: "晴天打字交流群",
-        date: "2020-10-10",
-        stage: 1647
-      },
-      "522394334": {
-        name: "小鹤双拼练习①",
-        date: "2020-10-10",
-        stage: 1037
-      },
-      "7390600": {
-        name: "092闲聊",
-        date: "2020-10-10",
-        stage: 40
-      },
-      "828213608": {
-        name: "匠士雨",
-        date: "2020-09-02",
-        stage: 1
-      },
-      "28534214":{
-        name: "梦幻",
-        date: "2017-03-27",
-        stage: 280
-      },
-      "347321669":{
-        name: "五笔基础",
-        date: "2020-12-27",
-        stage: 1
-      }
-    };
-    var gObj = groupStageObj[guid];
-    if (gObj) {
-      let toDateByStr = function (dateStr) {
-        return new Date(dateStr.substr(0, 4), dateStr.substr(5, 2) - 1, dateStr.substr(8, 2));
-      }
-      let gDate = toDateByStr(gObj.date);
-      let matchDate = toDateByStr(matchDateStr);
-      let gapDay = Math.floor((matchDate.getTime() - gDate.getTime()) / 3600 / 24 / 1000);
-      return gObj.stage - 0 + gapDay;
-    } else {
-      return "";
-    }
-  },
+
 
   initGroups: function () {
     const role = JSON.parse(wx.getStorageSync("chai.role"));

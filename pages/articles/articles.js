@@ -201,16 +201,31 @@ Page({
   reqModifyContent: function(article, content){
     const self = this;
     const matchObj = new Object();
+    const guid = (article.type == "1" ? 1 : Number(article.groups[0].guid));
+    const reg = new RegExp('#.+#', 'g');
+    let matchRes = content.match(reg);
+    let title = '';
+    let subtitle = '';
+    let period = '';
+    if(matchRes){
+      content = content.replace(reg, '');
+      let matchStr = matchRes[0];
+      matchStr = matchStr.substr(1, matchStr.length - 2);
+      let params = matchStr.split('#');
+      title = params[0] || '';
+      subtitle = params[1] || '';
+      period = params[2] || '';
+    }
     matchObj.limited_at = '0';
     matchObj.mode = '0';
     matchObj.type = article.type;
-    matchObj.period = article.period || '';
+    matchObj.period = period || util.calGroupStage(guid, article.started_at) || article.period || '';
     matchObj.started_at = article.started_at;
     matchObj.ended_at = article.ended_at;
-    matchObj.title = article.title;
+    matchObj.title = title || article.title;
     matchObj.content = content.replace(/\s/g, '');
-    matchObj.subtitle = article.subtitle || '';
-    matchObj.group_list = [(article.type == "1" ? 1 : Number(article.groups[0].guid))];
+    matchObj.subtitle = subtitle || article.subtitle || '';
+    matchObj.group_list = [guid];
     this.reqUploadMatch(matchObj, () => {
       self.reqDeleteMatch(article.id);
     });
