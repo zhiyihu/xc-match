@@ -17,7 +17,7 @@
 
 		<view class="up-info-title"><text>*</text>比赛日期</view>
 		<view style="display: flex;justify-content:flex-start;margin-right: 12px;">
-		<picker style="flex: 1;" mode="date" value="{{date}}" start="2020-01-01" end="2030-12-31" bindchange="bindDateChange">
+		<picker style="flex: 1;" mode="date" value="{{date}}" start="2020-01-01" end="2040-12-31" bindchange="bindDateChange">
 			<view class="picker">
 				<view class="picker-part" style="width: 100%;">
 					<text>{{date}}</text>

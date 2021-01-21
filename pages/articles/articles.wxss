@@ -40,7 +40,7 @@
   margin-bottom: 4px;
 }
 
-.article-list>view>button{
+.article-list>view button{
   width: 70px !important;
   height: 24px !important;
   font-size: 14px;
@@ -76,7 +76,40 @@
   align-content: flex-end;
 }
 
-.detail-text>button{
-  margin-bottom: 4px;
+
+.title-edit-line{
+  display: flex;
+  margin-bottom: 6px;
+}
+.title-edit-line>input{
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  padding-left: 8px;
+  height: 32px;
+}
+
+.title-edit{
+  flex-grow: 1;
+}
+
+.period-edit{
+  flex-grow: 0;
+  margin-left: 6px;
+  width: 80px;
+}
+
+.edit-modify-btn-line{
+  display: flex;
+  justify-content: center;
   margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+.edit-modify-btn-line>view{
+  flex-grow: 1;
+  padding-left: 4px;
+}
+
+.edit-modify-btn-line>button{
+  flex-grow: 0;
 }

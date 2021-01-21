@@ -18,6 +18,9 @@ Page({
     pageSel: -1,
     total: 0,
     content: '', //当前显示的textarea内容
+    title: '', //当前显示的title
+    subtitle: '', //当前subtitle
+    period: '', //当前period
   },
 
   bindPickerChange: function (e) {
@@ -29,7 +32,8 @@ Page({
     if (guid != 0) {
       this.reqQueryMatches(guid);
       this.setData({
-        pageSel: 1
+        pageSel: 1,
+        showIndex: -1,
       });
     }
   },
@@ -39,6 +43,27 @@ Page({
       content: e.detail.value
     });
   },
+
+  onTitleInput: function (e) {
+    this.setData({
+      title: e.detail.value
+    });
+  },
+
+
+  onSubtitleInput: function (e) {
+    this.setData({
+      subtitle: e.detail.value
+    });
+  },
+
+
+  onPeriodInput: function (e) {
+    this.setData({
+      period: e.detail.value
+    });
+  },
+
 
 
   reqDeleteMatch: function(id){
@@ -169,9 +194,13 @@ Page({
     if (this.data.showIndex == index) {
       index = -1;
     }
+    const isShowArticle = (index >= 0 && article.length > 0);
     this.setData({
       showIndex: index,
-      content: (index >= 0 && article.length > 0 ? article[index].content : '')
+      content: (isShowArticle ? article[index].content : ''),
+      title: (isShowArticle ? article[index].title : ''),
+      subtitle: (isShowArticle ? article[index].subtitle || '' : ''),
+      period: (isShowArticle ? article[index].period || '' : '')
     });
   },
 
@@ -179,12 +208,22 @@ Page({
     const index = e.currentTarget.dataset.index;
     const article = this.data.articleArr[index];
     const content = this.data.content;
+    const title = this.data.title;
+    const subtitle = this.data.subtitle;
+    const period = this.data.period;
     const self = this;
-    if(article.content == content.trim()){
+    if(article.content == content.trim() && article.title == title.trim() && article.subtitle == subtitle.trim() && article.period == period.trim()){
       wx.showToast({
-        title: '没有修改内容',
+        title: '没有修改',
         icon: 'none'
-      })
+      });
+      return;
+    }
+    if(!title.trim() || !content.trim()){
+      wx.showToast({
+        title: '标题和内容不能为空',
+        icon: 'none'
+      });
       return;
     }
     wx.showModal({
@@ -192,39 +231,26 @@ Page({
       content: '修改内容不可撤销，确认提交？',
       success: function (sm) {
         if (sm.confirm) {
-          self.reqModifyContent(article, content);
+          self.reqModifyContent(article, content, title, subtitle, period);
         }
       }
     });
   },
 
-  reqModifyContent: function(article, content){
+  reqModifyContent: function(article, content, title, subtitle, period){
     const self = this;
     const matchObj = new Object();
     const guid = (article.type == "1" ? 1 : Number(article.groups[0].guid));
-    const reg = new RegExp('#.+#', 'g');
-    let matchRes = content.match(reg);
-    let title = '';
-    let subtitle = '';
-    let period = '';
-    if(matchRes){
-      content = content.replace(reg, '');
-      let matchStr = matchRes[0];
-      matchStr = matchStr.substr(1, matchStr.length - 2);
-      let params = matchStr.split('#');
-      title = params[0] || '';
-      subtitle = params[1] || '';
-      period = params[2] || '';
-    }
+    
     matchObj.limited_at = '0';
     matchObj.mode = '0';
     matchObj.type = article.type;
-    matchObj.period = period || util.calGroupStage(guid, article.started_at) || article.period || '';
+    matchObj.period = period || util.calGroupStage(guid, article.started_at);
     matchObj.started_at = article.started_at;
     matchObj.ended_at = article.ended_at;
-    matchObj.title = title || article.title;
+    matchObj.title = title.replace(/\s/g, '');
     matchObj.content = content.replace(/\s/g, '');
-    matchObj.subtitle = subtitle || article.subtitle || '';
+    matchObj.subtitle = subtitle.replace(/\s/g, '');
     matchObj.group_list = [guid];
     this.reqUploadMatch(matchObj, () => {
       self.reqDeleteMatch(article.id);

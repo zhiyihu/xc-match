@@ -25,8 +25,18 @@
         <button data-id="{{item.id}}" bindtap="deleteMatch" class="del-btn">删除</button>
       </view>
       <view wx:if="{{index==showIndex}}" class="detail-text">
+        <view class="title-edit-line">
+          <input value="{{item.title}}" bindinput="onTitleInput" type="text" placeholder="标题" class="title-edit"/>
+        </view>
+        <view class="title-edit-line">
+          <input value="{{item.subtitle}}" bindinput="onSubtitleInput" type="text" placeholder="副标题" class="title-edit"/>
+          <input value="{{item.period}}" bindinput="onPeriodInput" type="text" placeholder="期数" class="period-edit"/>
+        </view>
         <textarea value="{{item.content}}" maxlength="2000" bindinput="onContentInput"></textarea>
-        <button class="info-btn" bindtap="bindModifyContent" data-index="{{index}}">修改内容</button>
+        <view class="edit-modify-btn-line">
+          <view>{{content.length}}字</view>
+          <button class="info-btn" bindtap="bindModifyContent" data-index="{{index}}" style="margin-right: 0px !important;">提交修改</button>
+        </view>
       </view>
     </view>
     
