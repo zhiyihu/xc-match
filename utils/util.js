@@ -126,6 +126,11 @@ const calGroupStage = function (guid, matchDateStr) {
       name: "五笔基础",
       date: "2020-12-27",
       stage: 1
+    },
+    "759730678":{
+      name: "郑码五笔大杂烩",
+      date: "2021-04-12",
+      stage: 72
     }
   };
   var gObj = groupStageObj[guid];
